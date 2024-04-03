@@ -1,5 +1,6 @@
 package application;
 
+import entities.Product;
 import services.CalculationService;
 
 import java.io.BufferedReader;
@@ -8,23 +9,26 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class App {
 
     public static void main(String[] args) {
 
-        List<Integer> list = new ArrayList<>();
+        Locale.setDefault(Locale.US);
+
+        List<Product> list = new ArrayList<>();
 
         File path = new File("Files\\input.txt");
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-
             String line = br.readLine();
             while (line != null) {
-                list.add(Integer.parseInt(line));
+                String[] product = line.split(",");
+                list.add(new Product(product[0],Double.parseDouble(product[1])));
                 line = br.readLine();
             }
-            Integer x = CalculationService.max(list);
+            Product x = CalculationService.max(list);
             System.out.println("MAX:");
             System.out.println(x);
         } catch (IOException e) {
