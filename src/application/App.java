@@ -29,7 +29,7 @@ public class App {
                 line = br.readLine();
             }
             Product x = CalculationService.max(list);
-            System.out.println("MAX:");
+            System.out.println("Most Expensive:");
             System.out.println(x);
         } catch (IOException e) {
             System.out.println("ERROR: "+e.getMessage());
